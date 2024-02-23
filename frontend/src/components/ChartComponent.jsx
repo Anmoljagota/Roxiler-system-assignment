@@ -4,6 +4,7 @@ import { Box, Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import SelectTag from "./SelectTag";
 import axios from "axios";
+import PieChart from "./PieChart";
 const ChartComponent = () => {
   const [data, setData] = useState([]);
   let totalitems = [];
@@ -79,6 +80,7 @@ const ChartComponent = () => {
         <SelectTag name="Select Month" fun={handleChange} />
       </Box>
       <canvas id="myChart" ref={chartRef} />
+      <PieChart />
       <Link to="/">
         <Button colorScheme="orange" float="right" mt="2.5rem">
           Home

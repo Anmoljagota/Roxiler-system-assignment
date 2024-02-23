@@ -7,6 +7,7 @@ import {
   MONTH_DATA_SUCCESS,
   MONTH_UNSOLD_ITEMS,
   MONTH_SOLD_ITEMS,
+  PIE_CHART,
 } from "./actionTypes";
 const inital_state = {
   loading: false,
@@ -15,9 +16,11 @@ const inital_state = {
   stats: [],
   solditems: "",
   unsolditems: "",
+  piechartcategory: null,
 };
 const reducer = (state = inital_state, action) => {
   const { type, payload } = action;
+  console.log(payload,"payload")
   switch (type) {
     case DATA_PAGE_LOADING:
       return { ...state, loading: true, error: false };
@@ -35,6 +38,8 @@ const reducer = (state = inital_state, action) => {
       return { ...state, loading: false, solditems: payload };
     case MONTH_UNSOLD_ITEMS:
       return { ...state, loading: false, unsolditems: payload };
+    case PIE_CHART:
+      return { ...state, loading: false, piechartcategory: payload };
     default:
       return state;
   }

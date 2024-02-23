@@ -6,6 +6,7 @@ const STAT_DATA_SUCCESS = "statdata";
 const MONTH_DATA_SUCCESS = "month";
 const MONTH_SOLD_ITEMS = "solditems";
 const MONTH_UNSOLD_ITEMS = "unsolditems";
+const PIE_CHART = "piechartsuccess";
 export {
   DATA_PAGE_LOADING,
   DATA_PAGE_SUCCESS,
@@ -15,4 +16,5 @@ export {
   MONTH_DATA_SUCCESS,
   MONTH_SOLD_ITEMS,
   MONTH_UNSOLD_ITEMS,
+  PIE_CHART,
 };

@@ -5,6 +5,7 @@ import {
   Flex,
   SimpleGrid,
   Text,
+  background,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
@@ -18,6 +19,9 @@ import { Link } from "react-router-dom";
 import SelectTag from "../components/SelectTag";
 import MonthModal from "../components/MonthModal";
 import TransactionCard from "../components/TransactionCard";
+import { IoMdArrowDropright } from "react-icons/io";
+import { IoMdArrowDropleft } from "react-icons/io";
+
 const Home = () => {
   const isLargeScreen = useBreakpointValue({ base: false, lg: true });
   console.log(isLargeScreen, "large..");
@@ -48,7 +52,7 @@ const Home = () => {
     if (id.current) clearTimeout(id.current);
     id.current = setTimeout(() => {
       setSearch({ ...search, value });
-    }, 2000);
+    }, 1000);
   };
   const handleMonth = (e) => {
     dispatch(Accoding_Month(e.target.value));
@@ -89,6 +93,24 @@ const Home = () => {
           <SelectTag name="Select Month" fun={handleMonth} />
           <MonthModal />
         </Box>
+
+        {!isLargeScreen && (
+          <Flex
+            justifyContent={"flex-end"}
+            alignContent={"center"}
+            mt={5}
+            gap={".8rem"}
+            fontSize={"2rem"}
+            cursor={"pointer"}
+          >
+            <Box _hover={{ background: "gray" }}>
+              <IoMdArrowDropleft />
+            </Box>
+            <Box _hover={{ background: "gray" }}>
+              <IoMdArrowDropright />
+            </Box>
+          </Flex>
+        )}
         {loading ? (
           <Center className="mt-12">...Loading</Center>
         ) : (
@@ -119,14 +141,18 @@ const Home = () => {
                 </Table>
               </TableContainer>
             ) : (
-              <SimpleGrid columns={[2, 3, null]} spacing={{md:"40px",base:"20px"}} mt={10}>
+              <SimpleGrid
+                columns={[2, 3, null]}
+                spacing={{ md: "40px", base: "20px" }}
+                mt={10}
+              >
                 {Transactions.length > 0 &&
                   Transactions.map((ele, i) => (
                     <TransactionCard key={i} {...ele} />
                   ))}
               </SimpleGrid>
             )}
-            <Pagination page={page} setPage={setPage} />
+            {isLargeScreen && <Pagination page={page} setPage={setPage} />}
           </>
         )}
       </Box>
