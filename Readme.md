@@ -42,7 +42,8 @@ Provide instructions and examples on how to use your project.
 GET /items - retrieve all items <br/>
 GET /items/q={search by description and title} - to search by description and title <br/>
 GET /items?month="By month" - filter according to month <br/>
-GET /items/Statistics?month="Type month" - visualize items with the help of chart <br/>
+GET /items/piechart?month="Type month" - visualize items with the help of chart <br/>
+GET /items/combine?month="Type Month" - combine all api and return in one api
 POST /API/items - create a new item <br/>
 
 ## Technology Stack
