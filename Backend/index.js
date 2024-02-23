@@ -3,11 +3,12 @@ const cors = require("cors");
 require("dotenv").config();
 const { connection } = require("./Config/db");
 const { Transaction } = require("./routes/TransactionData.Route");
-
+const { Barchart } = require("./routes/BarChart.Route");
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/", Transaction);
+app.use("/", Barchart);
 app.listen(process.env.PORT, async () => {
   try {
     await connection;
