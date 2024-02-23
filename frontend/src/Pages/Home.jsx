@@ -36,6 +36,8 @@ const Home = () => {
     shallowEqual
   );
   const [page, setPage] = useState(1);
+  const [disabled, setDisabled] = useState(false);
+  const [incdisabled, setIncdisabled] = useState(false);
   const limit = useRef(10);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -43,6 +45,15 @@ const Home = () => {
       dispatch(AllData(page, limit.current));
     } else {
       dispatch(Searching_Data(search));
+    }
+    if (page) {
+      if (page <= 1) {
+        setDisabled(true);
+      } else if (page >= 4) {
+        setIncdisabled(true);
+      } else {
+        setDisabled(false);
+      }
     }
   }, [search, page]);
 
@@ -95,22 +106,43 @@ const Home = () => {
         </Box>
 
         {!isLargeScreen && (
-          <Flex
-            justifyContent={"flex-end"}
-            alignContent={"center"}
-            mt={5}
-            gap={".8rem"}
-            fontSize={"2rem"}
-            cursor={"pointer"}
-          >
-            <Box _hover={{ background: "gray" }}>
-              <IoMdArrowDropleft />
-            </Box>
-            <Box _hover={{ background: "gray" }}>
-              <IoMdArrowDropright />
-            </Box>
-          </Flex>
+          <>
+            <Center>
+              <input
+                type="text"
+                className="rounded-md p-3 shadow-md m-auto mt-5 w-[90%]"
+                placeholder="Search..."
+                onChange={handleChange}
+              />
+            </Center>
+
+            <Flex
+              justifyContent={"flex-end"}
+              alignContent={"center"}
+              mt={5}
+              gap={".8rem"}
+              fontSize={"2rem"}
+              cursor={"pointer"}
+            >
+              <Text fontSize={"1.2rem"}>{page} of 4</Text>
+              <Box
+                _hover={{ background: "gray" }}
+                onClick={() => !disabled && setPage(page - 1)}
+                borderRadius={"100%"}
+              >
+                <IoMdArrowDropleft />
+              </Box>
+              <Box
+                _hover={{ background: "gray" }}
+                borderRadius={"100%"}
+                onClick={() => !incdisabled && setPage(page + 1)}
+              >
+                <IoMdArrowDropright />
+              </Box>
+            </Flex>
+          </>
         )}
+
         {loading ? (
           <Center className="mt-12">...Loading</Center>
         ) : (
@@ -142,9 +174,11 @@ const Home = () => {
               </TableContainer>
             ) : (
               <SimpleGrid
-                columns={[2, 3, null]}
+                columns={[1, 2, null]}
                 spacing={{ md: "40px", base: "20px" }}
-                mt={10}
+                w={"90%"}
+                margin={"auto"}
+                mt={6}
               >
                 {Transactions.length > 0 &&
                   Transactions.map((ele, i) => (
