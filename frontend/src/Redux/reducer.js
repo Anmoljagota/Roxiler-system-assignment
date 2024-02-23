@@ -5,6 +5,8 @@ import {
   SEARCH_DATA_SUCCESS,
   STAT_DATA_SUCCESS,
   MONTH_DATA_SUCCESS,
+  MONTH_UNSOLD_ITEMS,
+  MONTH_SOLD_ITEMS,
 } from "./actionTypes";
 const inital_state = {
   loading: false,
@@ -29,7 +31,10 @@ const reducer = (state = inital_state, action) => {
       return { ...state, loading: false, stats: payload };
     case MONTH_DATA_SUCCESS:
       return { ...state, loading: false, data: payload };
-
+    case MONTH_SOLD_ITEMS:
+      return { ...state, loading: false, solditems: payload };
+    case MONTH_UNSOLD_ITEMS:
+      return { ...state, loading: false, unsolditems: payload };
     default:
       return state;
   }

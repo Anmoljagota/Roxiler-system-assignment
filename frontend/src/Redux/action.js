@@ -5,6 +5,8 @@ import {
   SEARCH_DATA_SUCCESS,
   STAT_DATA_SUCCESS,
   MONTH_DATA_SUCCESS,
+  MONTH_SOLD_ITEMS,
+  MONTH_UNSOLD_ITEMS,
 } from "./actionTypes";
 import axios from "axios";
 const AllData = (page, limit) => (dispatch) => {
@@ -48,4 +50,31 @@ const STATE = (data) => (dispatch) => {
     });
 };
 
-export { AllData, Searching_Data, STATE, Accoding_Month };
+const Totalsold = (data) => (dispatch) => {
+  return axios
+    .get(
+      `https://weak-dog-waistcoat.cyclic.app/Statistics?month=${data}&sold=${true}`
+    )
+    .then((res) => {
+      console.log(res.data);
+      dispatch({ type: MONTH_SOLD_ITEMS, payload: res.data.length });
+    });
+};
+const Totalunsold = (data) => (dispatch) => {
+  return axios
+    .get(
+      `https://weak-dog-waistcoat.cyclic.app/Statistics?month=${data}&unsold=${true}`
+    )
+    .then((res) => {
+      console.log(res.data);
+      dispatch({ type: MONTH_UNSOLD_ITEMS, payload: res.data.length });
+    });
+};
+export {
+  AllData,
+  Searching_Data,
+  STATE,
+  Accoding_Month,
+  Totalsold,
+  Totalunsold,
+};

@@ -9,9 +9,7 @@ const TransactionTable = ({
   price,
   sold,
   category,
-  
 }) => {
-  console.log("hlo...");
   return (
     // <Skeleton isLoaded={loading1} w={"100%"}>
     <Tr>
@@ -22,7 +20,7 @@ const TransactionTable = ({
       <Td className={Styles.td5}>{category}</Td>
       <Td className={Styles.td6}>{sold ? "Sold" : "Not Sold"}</Td>
       <Td className={Styles.td7}>
-        <Image src={image} height="100px" width="150px" />
+        <Image src={image} height="6.25rem" width="9.375rem" />
       </Td>
     </Tr>
     // </Skeleton>
