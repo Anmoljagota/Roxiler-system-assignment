@@ -15,6 +15,17 @@ code {
 html {
   font-size: 100%;
 }
+
+@media screen and (max-width: 900px) and (min-width: 600px) {
+  html {
+    font-size: 70%;
+  }
+}
+@media screen and (max-width: 300px) and (min-width: 599px) {
+  html {
+    font-size: 50%;
+  }
+}
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";

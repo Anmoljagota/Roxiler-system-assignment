@@ -44,7 +44,7 @@ const Accoding_Month = (data) => (dispatch) => {
 
 const STATE = (data) => (dispatch) => {
   return axios
-    .get(`http://localhost:8080/Statistics?month=${data}`)
+    .get(`https://stormy-ox-beret.cyclic.app/Statistics?month=${data}`)
     .then((res) => {
       dispatch({ type: STAT_DATA_SUCCESS, payload: res.data });
     });
@@ -53,7 +53,7 @@ const STATE = (data) => (dispatch) => {
 const Totalsold = (data) => (dispatch) => {
   return axios
     .get(
-      `http://localhost:8080/Statistics?month=${data}&sold=${true}`
+      `https://stormy-ox-beret.cyclic.app/Statistics?month=${data}&sold=${true}`
     )
     .then((res) => {
       console.log(res.data);
@@ -63,7 +63,7 @@ const Totalsold = (data) => (dispatch) => {
 const Totalunsold = (data) => (dispatch) => {
   return axios
     .get(
-      `http://localhost:8080/Statistics?month=${data}&unsold=${true}`
+      `https://stormy-ox-beret.cyclic.app/Statistics?month=${data}&unsold=${true}`
     )
     .then((res) => {
       console.log(res.data);
