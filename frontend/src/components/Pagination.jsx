@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 
 const Pagination = ({ page, setPage }) => {
   const [disabled, setDisabled] = useState(false);
@@ -14,7 +14,7 @@ const Pagination = ({ page, setPage }) => {
     }
   }, [page]);
   return (
-    <div>
+    <Box display={{ md: "block", sm: "none", base: "none" }}>
       <Flex className="w-[70%] m-[auto] justify-between		items-center gap-[0.625rem] p-[0.625rem]">
         <button
           className="bg-[#8b2b3a] py-1.5 px-6 rounded-md text-white cursor-pointer"
@@ -32,7 +32,7 @@ const Pagination = ({ page, setPage }) => {
           NEXT
         </button>
       </Flex>
-    </div>
+    </Box>
   );
 };
 

@@ -1,4 +1,12 @@
-import { Box, Button, Center, Flex, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  SimpleGrid,
+  Text,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import TransactionTable from "../components/TransactionTable";
@@ -9,7 +17,10 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import SelectTag from "../components/SelectTag";
 import MonthModal from "../components/MonthModal";
+import TransactionCard from "../components/TransactionCard";
 const Home = () => {
+  const isLargeScreen = useBreakpointValue({ base: false, lg: true });
+  console.log(isLargeScreen, "large..");
   const [search, setSearch] = useState("");
   const id = React.useRef();
 
@@ -53,7 +64,7 @@ const Home = () => {
           </Flex>
           <input
             type="text"
-            className="rounded-md md:py-2 md:px-6 shadow-md"
+            className="rounded-md md:py-2 md:px-6 shadow-md hidden md:block"
             placeholder="Search..."
             onChange={handleChange}
           />
@@ -82,27 +93,39 @@ const Home = () => {
           <Center className="mt-12">...Loading</Center>
         ) : (
           <>
-            <TableContainer mt="1.4rem">
-              <Table>
-                <Thead>
-                  <Tr>
-                    <Th>ID</Th>
-                    <Th>Title</Th>
-                    <Th>Description</Th>
-                    <Th>Price</Th>
-                    <Th>Category</Th>
-                    <Th>Sold</Th>
-                    <Th>Image</Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  {Transactions.length > 0 &&
-                    Transactions.map((ele, i) => (
-                      <TransactionTable key={i} {...ele} />
-                    ))}
-                </Tbody>
-              </Table>
-            </TableContainer>
+            {isLargeScreen ? (
+              <TableContainer
+                mt="1.4rem"
+                // display={{ md: "block", sm: "none", base: "none" }}
+              >
+                <Table>
+                  <Thead>
+                    <Tr>
+                      <Th>ID</Th>
+                      <Th>Title</Th>
+                      <Th>Description</Th>
+                      <Th>Price</Th>
+                      <Th>Category</Th>
+                      <Th>Sold</Th>
+                      <Th>Image</Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    {Transactions.length > 0 &&
+                      Transactions.map((ele, i) => (
+                        <TransactionTable key={i} {...ele} />
+                      ))}
+                  </Tbody>
+                </Table>
+              </TableContainer>
+            ) : (
+              <SimpleGrid columns={[2, 3, null]} spacing={{md:"40px",base:"20px"}} mt={10}>
+                {Transactions.length > 0 &&
+                  Transactions.map((ele, i) => (
+                    <TransactionCard key={i} {...ele} />
+                  ))}
+              </SimpleGrid>
+            )}
             <Pagination page={page} setPage={setPage} />
           </>
         )}
