@@ -13,7 +13,7 @@ const AllData = (page, limit) => (dispatch) => {
   dispatch({ type: DATA_PAGE_LOADING });
   return axios
     .get(
-      `https://weak-dog-waistcoat.cyclic.app/items?page=${page}&limit=${limit}`
+      `https://stormy-ox-beret.cyclic.app/items?page=${page}&limit=${limit}`
     )
     .then((res) => {
       console.log(res.data, "paginationnn");
@@ -28,7 +28,7 @@ const Searching_Data = (data) => (dispatch) => {
   const { value } = data;
   console.log("i am data action", value);
   return axios
-    .get(`https://weak-dog-waistcoat.cyclic.app/items?q=${value}`)
+    .get(`https://stormy-ox-beret.cyclic.app/items?q=${value}`)
     .then((res) => {
       dispatch({ type: SEARCH_DATA_SUCCESS, payload: res.data });
     });
@@ -36,7 +36,7 @@ const Searching_Data = (data) => (dispatch) => {
 
 const Accoding_Month = (data) => (dispatch) => {
   return axios
-    .get(`https://weak-dog-waistcoat.cyclic.app/items?month=${data}`)
+    .get(`https://stormy-ox-beret.cyclic.app/items?month=${data}`)
     .then((res) => {
       dispatch({ type: MONTH_DATA_SUCCESS, payload: res.data });
     });
@@ -44,7 +44,7 @@ const Accoding_Month = (data) => (dispatch) => {
 
 const STATE = (data) => (dispatch) => {
   return axios
-    .get(`https://weak-dog-waistcoat.cyclic.app/Statistics?month=${data}`)
+    .get(`http://localhost:8080/Statistics?month=${data}`)
     .then((res) => {
       dispatch({ type: STAT_DATA_SUCCESS, payload: res.data });
     });
@@ -53,7 +53,7 @@ const STATE = (data) => (dispatch) => {
 const Totalsold = (data) => (dispatch) => {
   return axios
     .get(
-      `https://weak-dog-waistcoat.cyclic.app/Statistics?month=${data}&sold=${true}`
+      `http://localhost:8080/Statistics?month=${data}&sold=${true}`
     )
     .then((res) => {
       console.log(res.data);
@@ -63,7 +63,7 @@ const Totalsold = (data) => (dispatch) => {
 const Totalunsold = (data) => (dispatch) => {
   return axios
     .get(
-      `https://weak-dog-waistcoat.cyclic.app/Statistics?month=${data}&unsold=${true}`
+      `http://localhost:8080/Statistics?month=${data}&unsold=${true}`
     )
     .then((res) => {
       console.log(res.data);
