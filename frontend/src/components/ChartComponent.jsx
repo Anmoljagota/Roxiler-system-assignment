@@ -61,7 +61,7 @@ const ChartComponent = () => {
     };
   }, [data]);
   const handleChange = (e) => {
-    console.log(e.target.value);
+
     pricesrange.forEach((ele) => {
       axios
         .get(`http://localhost:8080/price?month=${e.target.value}&price=${ele}`)

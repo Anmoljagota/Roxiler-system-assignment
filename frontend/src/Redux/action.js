@@ -7,7 +7,7 @@ import {
   MONTH_DATA_SUCCESS,
   MONTH_SOLD_ITEMS,
   MONTH_UNSOLD_ITEMS,
-  PIE_CHART
+  PIE_CHART,
 } from "./actionTypes";
 import axios from "axios";
 const AllData = (page, limit) => (dispatch) => {
@@ -15,7 +15,6 @@ const AllData = (page, limit) => (dispatch) => {
   return axios
     .get(`https://stormy-ox-beret.cyclic.app/items?page=${page}&limit=${limit}`)
     .then((res) => {
-      console.log(res.data, "paginationnn");
       dispatch({ type: DATA_PAGE_SUCCESS, payload: res.data });
     })
     .catch((error) => {
@@ -25,7 +24,6 @@ const AllData = (page, limit) => (dispatch) => {
 
 const Searching_Data = (data) => (dispatch) => {
   const { value } = data;
-  console.log("i am data action", value);
   return axios
     .get(`https://stormy-ox-beret.cyclic.app/items?q=${value}`)
     .then((res) => {
@@ -55,7 +53,6 @@ const Totalsold = (data) => (dispatch) => {
       `https://stormy-ox-beret.cyclic.app/Statistics?month=${data}&sold=${true}`
     )
     .then((res) => {
-      console.log(res.data);
       dispatch({ type: MONTH_SOLD_ITEMS, payload: res.data.length });
     });
 };
@@ -65,17 +62,17 @@ const Totalunsold = (data) => (dispatch) => {
       `https://stormy-ox-beret.cyclic.app/Statistics?month=${data}&unsold=${true}`
     )
     .then((res) => {
-      console.log(res.data);
       dispatch({ type: MONTH_UNSOLD_ITEMS, payload: res.data.length });
     });
 };
 
-const  Piechart=(data)=>(dispatch)=>{
-return axios.get(`https://stormy-ox-beret.cyclic.app/piechart?month=${data}`).then((res)=>{
-  console.log(res.data,"pie..")
-  dispatch({type:PIE_CHART,payload:res.data});
-})
-}
+const Piechart = (data) => (dispatch) => {
+  return axios
+    .get(`https://stormy-ox-beret.cyclic.app/piechart?month=${data}`)
+    .then((res) => {
+      dispatch({ type: PIE_CHART, payload: res.data });
+    });
+};
 export {
   AllData,
   Searching_Data,
@@ -83,5 +80,5 @@ export {
   Accoding_Month,
   Totalsold,
   Totalunsold,
-  Piechart
+  Piechart,
 };

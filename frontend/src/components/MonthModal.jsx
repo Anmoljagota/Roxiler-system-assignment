@@ -28,7 +28,7 @@ const MonthModal = () => {
     dispatch(Totalsold(e.target.value));
     dispatch(Totalunsold(e.target.value));
   }
-  console.log("i am stats", stats);
+  
   return (
     <>
       <SelectTag name="Statistic" fun={handleChange} />

@@ -9,7 +9,6 @@ const PieChart = () => {
   const stats = useSelector((items) => {
     return items.TransactionData.piechartcategory;
   }, shallowEqual);
-  console.log(stats, "stats");
   // Data for the pie chart
   useEffect(() => {
     dispatch(Piechart(month));

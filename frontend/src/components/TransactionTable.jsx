@@ -11,7 +11,6 @@ const TransactionTable = ({
   category,
 }) => {
   return (
-    // <Skeleton isLoaded={loading1} w={"100%"}>
     <Tr>
       <Td className={Styles.td1}>{_id}</Td>
       <Td className={Styles.td2}>{title}</Td>
@@ -23,7 +22,6 @@ const TransactionTable = ({
         <Image src={image} height="6.25rem" width="9.375rem" />
       </Td>
     </Tr>
-    // </Skeleton>
   );
 };
 

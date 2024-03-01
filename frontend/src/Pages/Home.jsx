@@ -5,7 +5,6 @@ import {
   Flex,
   SimpleGrid,
   Text,
-  background,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
@@ -21,14 +20,11 @@ import MonthModal from "../components/MonthModal";
 import TransactionCard from "../components/TransactionCard";
 import { IoMdArrowDropright } from "react-icons/io";
 import { IoMdArrowDropleft } from "react-icons/io";
-
 const Home = () => {
   const isLargeScreen = useBreakpointValue({ base: false, lg: true });
-  console.log(isLargeScreen, "large..");
-  const [search, setSearch] = useState("");
-  const id = React.useRef();
-
-  const { Transactions, loading } = useSelector(
+const [search, setSearch] = useState("");
+const id = React.useRef();
+const { Transactions, loading } = useSelector(
     (details) => ({
       Transactions: details.TransactionData.data,
       loading: details.TransactionData.loading,
@@ -59,7 +55,7 @@ const Home = () => {
 
   const handleChange = (e) => {
     const { value } = e.target;
-    console.log(id.current, "currentid");
+
     if (id.current) clearTimeout(id.current);
     id.current = setTimeout(() => {
       setSearch({ ...search, value });

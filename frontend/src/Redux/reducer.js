@@ -20,7 +20,6 @@ const inital_state = {
 };
 const reducer = (state = inital_state, action) => {
   const { type, payload } = action;
-  console.log(payload,"payload")
   switch (type) {
     case DATA_PAGE_LOADING:
       return { ...state, loading: true, error: false };

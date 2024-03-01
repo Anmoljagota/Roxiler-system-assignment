@@ -9,7 +9,6 @@ const TransactionCard = ({
   sold,
   category,
 }) => {
-  console.log(_id, "image");
   return (
     <Box
       p={6}
