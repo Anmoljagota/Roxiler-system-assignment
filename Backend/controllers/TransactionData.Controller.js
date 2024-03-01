@@ -3,7 +3,6 @@ const { TransactionModel } = require("../Models/All_Transaction");
 
 //THIS API IS CREATED FOR ADDING A DATA TO MONGODB DATABASE
 const TransactionDataController = async (req, res) => {
-  console.log(req.body);
   try {
     const post_data = new TransactionModel(req.body);
     await post_data.save();

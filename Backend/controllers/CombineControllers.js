@@ -5,7 +5,6 @@ const axios = require("axios");
 
 // Helper function to fetch data from an endpoint
 const fetchData = async (url, month) => {
-    console.log("url",url,month)
   const response = await axios.get(`${url}?month=${month}`);
   return response.data;
 };

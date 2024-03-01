@@ -2,7 +2,6 @@ const { TransactionModel } = require("../Models/All_Transaction");
 
 //SEARCH API ACCORDING TO DESCRIPTION AND TITLE , PAGINATION IS ALSO IMPLEMENTED HERE
 const PieChartController = async (req, res) => {
-  const allSearchdata = [];
   const { month } = req.query;
   const monthIndex = new Date(`${month} 1, 2000`).getMonth() + 1;
   try {

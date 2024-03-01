@@ -1,10 +1,14 @@
 const { TransactionModel } = require("../Models/All_Transaction");
 const BarCharController = async (req, res) => {
   const { month, price } = req.query;
+
   if (price) {
     var newprice = price.split("-");
+   
   }
+
   const monthIndex = new Date(`${month} 1, 2000`).getMonth() + 1;
+  
   try {
     const items = await TransactionModel.aggregate([
       {
